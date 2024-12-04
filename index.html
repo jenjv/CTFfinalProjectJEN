@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Online Puzzle Challenge</h1>
+        <p>Answer all questions to unlock the secret code question!</p>
+        
+        <!-- Question 1 -->
+        <div class="question" id="question-1">
+            <p>1. What could the following message mean?
+                d2UgYXJlIGFsbW9zdCBkb25lIHdpdGggZmFsbCBzZW1lc3RlciEh
+            </p>
+            <input type="text" id="answer-1" placeholder="Your answer here">
+            <button onclick="toggleHint()">Show Hint</button> <!-- Added button for the hint -->
+            <button onclick="checkAnswer(1, 'we are almost done with fall semester!!')">Submit</button>
+            <p class="hint" id="hint" style="display: none;">(Hint: Doesn't it look like a secret message? How would you decode it?)</p>
+        </div>
+
+
+        <!-- Secret Code Question -->
+        <div class="question" id="secret-question" style="display: none;">
+            <p>2. Enter the secret code hidden in this website.</p>
+            <input type="text" id="answer-secret" placeholder="Your answer here">
+            <button onclick="checkSecret()">Submit</button>
+            <p class="hint" id="hint" style="display: none;">(Hint: how do you find information from a webpage?)</p>
+        </div>
+        
+        <p id="result" style="display: none; font-weight: bold;"></p>
+        
+        <script>
+            function toggleHint() {
+                const hint = document.getElementById('hint');
+                if (hint.style.display === 'none' || hint.style.display === '') {
+                    hint.style.display = 'block'; // Show the hint
+                } else {
+                    hint.style.display = 'none'; // Hide the hint
+                }
+            }
+        
+            function checkSecret() {
+                const answer = document.getElementById('answer-secret').value.trim().toLowerCase();
+                const result = document.getElementById('result');
+                if (answer === 'inspect') {
+                    result.textContent = 'Correct! Well done.';
+                    result.style.color = 'green';
+                } else {
+                    result.textContent = 'Incorrect. Try again.';
+                    result.style.color = 'red';
+                }
+                result.style.display = 'block';
+            }
+        </script>
+        
+
+        <!-- Hidden Code -->
+        <!-- Inspect to find the code -->
+        <div style="display: none;">Secret Code: itc101{abc12345}</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
